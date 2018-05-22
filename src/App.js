@@ -17,22 +17,22 @@ class BooksApp extends Component {
   }
 
   changeShelf = (book, shelf) => {
-  	// check to see if the book exists in the current books array
-    const bookID = this.state.books.findIndex(b => b.id === book.id);
+	// check to see if the book exists in the current books array
+	const bookID = this.state.books.findIndex((b) => b.id === book.id);
 
-    // If it's new, add it to the shelf, otherwise adjust the books shelf
-    if (bookID < 0) {
-      book.shelf = shelf;
-      this.setState((state) => state.books.push(book));
-    } else {
-      this.setState((state) => state.books[bookID].shelf = shelf);
-    }
+	// If it's new (-1), add it to the shelf, otherwise adjust the books shelf
+	if (bookID < 0) {
+	  book.shelf = shelf;
+	  this.setState((state) => state.books.push(book));
+	} else {
+	  this.setState((state) => state.books[bookID].shelf = shelf);
+	}
 
-    // remove unwanted books by returning an array of books that have a shelf set
-    this.setState((state) => (state.books.filter((book) => book.shelf !== 'none')));
+	// remove unwanted books by returning an array of books that have a shelf set
+	this.setState((state) => (state.books.filter((book) => book.shelf !== 'none')));
 
-    // update the book in the database
-    BooksAPI.update({id: book.id}, shelf);
+	// update the book in the database
+	BooksAPI.update({id: book.id}, shelf);
   }
 
   render() {
@@ -40,15 +40,15 @@ class BooksApp extends Component {
 	  <div className="app">
 		<Route exact path="/search" render={() => (
 		  <SearchPage
-		  	books={this.state.books}
-		  	changeShelf = {this.changeShelf}
+			books={this.state.books}
+			changeShelf = {this.changeShelf}
 		  />
 		)} />
 
 		<Route exact path="/" render={() => (
 		  <BookShelves
-		  	books = {this.state.books}
-		  	changeShelf = {this.changeShelf}
+			books = {this.state.books}
+			changeShelf = {this.changeShelf}
 		  />
 		)} />
 	  </div>
