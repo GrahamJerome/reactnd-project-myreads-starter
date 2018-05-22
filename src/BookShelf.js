@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import * as BooksAPI from './BooksAPI'
-import './App.css'
 import { Link } from 'react-router-dom'
 import Book from './Book'
 
@@ -17,7 +16,7 @@ class BookShelf extends Component {
 							<Book
 								key={i}
 								book={book}
-								onChangeShelf={this.props.onChangeShelf}
+								changeShelf={this.props.changeShelf}
 							/>
 						))
 					}

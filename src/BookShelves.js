@@ -1,10 +1,22 @@
 import React, { Component } from 'react'
 import * as BooksAPI from './BooksAPI'
-import './App.css'
 import { Link } from 'react-router-dom'
 import BookShelf from './BookShelf'
 
 class BookShelves extends Component {
+
+	state = {
+		shelves: [{
+	      title: 'Currently Reading',
+	      tag: 'currentlyReading'
+	    }, {
+	      title: 'Want to read',
+	      tag: 'wantToRead'
+	    }, {
+	      title: 'Read',
+	      tag: 'read'
+	    }]
+	}
 
 	render() {
 		return (
@@ -14,29 +26,16 @@ class BookShelves extends Component {
 				</div>
 				<div className="list-books-content">
 					<div>
-						<BookShelf
-							title="Currently Reading"
-							shelfBooks={this.props.books.filter((book) =>
-								book.shelf === "currentlyReading"
-							)}
-							onChangeShelf={this.props.onChangeShelf}
-						/>
-
-						<BookShelf
-							title="Want to Read"
-							shelfBooks={this.props.books.filter((book) =>
-								book.shelf === "wantToRead"
-							)}
-							onChangeShelf={this.props.onChangeShelf}
-						/>
-
-						<BookShelf
-							title="Read"
-							shelfBooks={this.props.books.filter((book) =>
-								book.shelf === "read"
-							)}
-							onChangeShelf={this.props.onChangeShelf}
-						/>
+						{this.state.shelves.map((shelf, i) => (
+							<BookShelf
+								key={i}
+								title={shelf.title}
+								shelfBooks={this.props.books.filter((book) =>
+									book.shelf === shelf.tag
+								)}
+								changeShelf={this.props.changeShelf}
+							/>
+						))}
 					</div>
 				</div>
 

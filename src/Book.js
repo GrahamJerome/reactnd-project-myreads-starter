@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import * as BooksAPI from './BooksAPI'
-import './App.css'
 import { Link } from 'react-router-dom'
 
 class Book extends Component {
 
 	handleChangeShelf = (event) => {
-	  this.props.onChangeShelf && this.props.onChangeShelf(this.props.book, event.target.value)
+	  this.props.changeShelf &&
+	  this.props.changeShelf(this.props.book, event.target.value)
 	}
 
 	render() {
@@ -34,11 +34,10 @@ class Book extends Component {
 				  </div>
 				</div>
 				<div className="book-title">{this.props.book.title}</div>
-				{this.props.book.authors && (
-		            this.props.book.authors.map((author, i) => (
-		              <div key={author} className="book-authors">{author}</div>
-		            ))
-		        )}
+				{this.props.book.authors &&
+		    	this.props.book.authors.map((author, i) => (
+		        	<div key={author} className="book-authors">{author}</div>
+		        ))}
 			  </div>
 			</li>
 		)
