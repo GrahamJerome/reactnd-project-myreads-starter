@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import * as BooksAPI from './BooksAPI'
-import './App.css'
 import { Route } from 'react-router-dom'
+
+import * as BooksAPI from './BooksAPI'
 import SearchPage from './SearchPage';
 import BookShelves from './BookShelves';
+import './App.css'
 
 class BooksApp extends Component {
   state = {
@@ -11,10 +12,11 @@ class BooksApp extends Component {
   }
 
   componentDidMount() {
-	BooksAPI.getAll().then((books) => {
-		this.setState({ books });
-	  });
-  }
+	BooksAPI.getAll()
+		.then((books) =>
+			this.setState({ books }) // books: books equivalent
+	  	);
+	}
 
   changeShelf = (book, shelf) => {
 	// check to see if the book exists in the current books array

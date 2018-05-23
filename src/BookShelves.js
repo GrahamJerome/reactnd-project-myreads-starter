@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import * as BooksAPI from './BooksAPI'
 import { Link } from 'react-router-dom'
+
 import BookShelf from './BookShelf'
 
 class BookShelves extends Component {
@@ -19,6 +19,8 @@ class BookShelves extends Component {
 	}
 
 	render() {
+		const { shelves } = this.state;
+
 		return (
 			<div className="list-books">
 				<div className="list-books-title">
@@ -26,7 +28,7 @@ class BookShelves extends Component {
 				</div>
 				<div className="list-books-content">
 					<div>
-						{this.state.shelves.map((shelf, i) => (
+						{shelves.map((shelf, i) => (
 							<BookShelf
 								key={i}
 								title={shelf.title}

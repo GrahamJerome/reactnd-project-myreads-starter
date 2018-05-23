@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+
 import * as BooksAPI from './BooksAPI'
 import Book from './Book'
-import { Link } from 'react-router-dom'
 
 class SearchPage extends Component {
 
@@ -13,7 +14,7 @@ class SearchPage extends Component {
 
 	updateQuery = (query) => {
 		// update the state query as source of truth
-		this.setState({ query: query });
+		this.setState({ query }); // query: query
 
 		if (query) {
 			this.setState({ noneFound: false })
